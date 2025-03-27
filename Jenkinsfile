@@ -7,17 +7,15 @@ pipeline {
 
     stages{
         stage("Cleanup Workspace"){
-            steps {
+                steps {
                 cleanWs()
-            }
-
+                }
         }
-    
-        stage("Checkout from SCM"){
-            steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/sory89/devsecops-pipeline-gitops.git'
-            }
 
+        stage("Checkout from SCM"){
+                steps {
+                    git branch: 'main', credentialsId: 'github', url: 'https://github.com/Ashfaque-9x/register-app'
+                }
         }
 
         stage("Build Application"){
@@ -25,13 +23,14 @@ pipeline {
                 sh "mvn clean package"
             }
 
-        }
+       }
 
-        stage("Test Application"){
-            steps {
-                sh "mvn test"
-            }
+       stage("Test Application"){
+           steps {
+                 sh "mvn test"
+           }
+       }
 
-        }
+      }
     }
 }
